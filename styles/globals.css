@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.images-text-assistant {
+	@apply text-white text-lg leading-none font-light;
+}

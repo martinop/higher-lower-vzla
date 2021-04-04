@@ -1,0 +1,12 @@
+[
+	{ 
+		"name": "Arepa",
+		"searches": 10000,
+		"imagePath": "/arepa.jpeg"
+	},
+	{ 
+		"name": "Dolar",
+		"searches": 4000,
+		"imagePath": "/dolar.jpeg"
+	}
+]
