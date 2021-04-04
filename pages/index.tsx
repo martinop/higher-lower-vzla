@@ -4,13 +4,6 @@ import { AnimatePresence, motion, useAnimation } from "framer-motion"
 import ImageBox from '../components/ImageBox'
 import data from '../data.json';
 
-type Item = {
-  name: string;
-  searches: number;
-  imagePath: string;
-  key: number;
-}
-
 export default function Home() {
   const [items, setItems] = React.useState({ left: data[0], right: data[1], temp: data[2] })
   const { left, right, temp } = items;
@@ -24,7 +17,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Create Next App</title>
+        <title>Más o menos Venezuela</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -45,7 +38,7 @@ export default function Home() {
             variants={{ active: { left: "0%" } }}
             className="h-full w-1/2 absolute right-0"
           >
-            <ImageBox {...right} isComparating comparisonName={left.name} />
+            <ImageBox {...right} isComparating comparator={left} />
           </motion.div>,
           <motion.div
             animate={control}
@@ -53,7 +46,7 @@ export default function Home() {
             variants={{ active: { right: "0%" } }}
             className="h-full w-1/2 absolute -right-1/2"
           >
-            <ImageBox {...temp} isComparating comparisonName={right.name} />
+            <ImageBox {...temp} isComparating comparator={right} />
           </motion.div>
         </AnimatePresence>
         <div className="vs">

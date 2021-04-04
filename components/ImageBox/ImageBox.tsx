@@ -4,17 +4,37 @@ import Details from './Details';
 import Actions from './Actions';
 import { css } from 'styled-jsx/css';
 import cx from 'classnames';
+import { Search } from '../../types';
 
-type ImageBoxProps = {
-	name: string;
-	searches: number;
-	imagePath: string;
+type ImageBoxProps = Pick<Search, 'name' | 'searches' | 'imagePath'> & {
 	isComparating: boolean;
+	comparator?: Search;
 	className?: string;
-	comparisonName?: string;
 }
+
+type Selection =  "higher" | "lower";
+
 const ImageBox: React.FC<ImageBoxProps> = (props) => {
-	const { name, searches, imagePath, isComparating, comparisonName, className } = props;
+	const { name, searches, imagePath, isComparating, comparator, className } = props;
+	const [revealed, setRevealed] = React.useState(false);
+	const selected = React.useRef<Selection>(null);
+	const showActions = isComparating && !revealed;
+
+	function onSelect(selection: Selection) {
+		setRevealed(true)
+		selected.current = selection;
+	}
+
+	function onCompleteCounter() {
+		const isHigherOK = selected.current === "higher" && searches > comparator.searches;
+		const isLowerOK = selected.current === "lower" && searches < comparator.searches;
+		if(isHigherOK || isLowerOK) {
+			console.log("NEXT ROUND")
+		} else {
+			console.log("LOSER MODAL")
+		}
+	}
+
 	return (
 		<div className={cx("image-box-container", className)}>
 			<Image
@@ -23,14 +43,19 @@ const ImageBox: React.FC<ImageBoxProps> = (props) => {
 				layout="fill"
 				objectFit="cover"
 			/>
-			{isComparating ? (
+			{showActions ? (
 				<Actions
 					name={name}
-					onSelect={console.log}
-					comparisonName={comparisonName}
+					onSelect={onSelect}
+					comparator={comparator}
 				/>
 			) : (
-				<Details name={name} searches={searches} />
+				<Details
+					name={name}
+					searches={searches}
+					onCompleteCounter={onCompleteCounter}
+					showCounter={isComparating}
+				/>
 			)}
 			<div className="overlay" />
 			<style jsx>{styles}</style>
