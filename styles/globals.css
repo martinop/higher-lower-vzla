@@ -4,5 +4,11 @@
 
 
 .images-text-assistant {
-	@apply text-white text-lg leading-none font-light;
+	@apply text-white text-base leading-none font-light;
+}
+
+@screen md {
+	.images-text-assistant {
+		@apply text-lg;
+	}
 }

@@ -36,7 +36,7 @@ function Home() {
 
 const styles = css`
   main {
-    @apply h-screen flex relative overflow-x-hidden;
+    @apply h-screen flex relative overflow-hidden;
   }
   .versus-container {
     @apply absolute top-1/2 left-1/2;

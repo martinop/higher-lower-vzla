@@ -14,10 +14,16 @@ const Button: React.FC<ButtonProps> = (props) => {
 			{children}
 			<style jsx>{`
 				.button {
-					@apply outline-none rounded-3xl border-white border-2 py-3 px-12 text-white transition duration-300 ease-in-out font-semibold flex justify-center items-center;
+					@apply text-sm outline-none rounded-3xl border-white border-2 py-1.5 px-6 text-white transition duration-300 ease-in-out font-semibold flex justify-center items-center;
 				}
 				.button:hover {
 					@apply bg-white text-black;
+				}
+
+				@screen md {
+					.button {
+						@apply py-3 px-12 text-base;
+					}
 				}
 			`}</style>
 		</button>

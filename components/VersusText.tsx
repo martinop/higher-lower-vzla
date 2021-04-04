@@ -35,13 +35,25 @@ function VersusText() {
 
 const components = css.resolve`
 	.vs {
-		@apply relative bg-white overflow-hidden rounded-full h-16 w-16 flex;
+		@apply relative bg-white overflow-hidden rounded-full h-10 w-10 flex;
+	}
+
+	@screen md {
+		.vs {
+			@apply h-16 w-16;
+		}
 	}
 `
 
 const styles = css`
 	.vs-text {
-		@apply text-3xl font-bold m-auto;
+		@apply text-lg font-bold m-auto;
+	}
+
+	@screen md {
+		.vs-text {
+			@apply text-2xl;
+		}
 	}
 `
 

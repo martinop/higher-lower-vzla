@@ -55,10 +55,20 @@ const Actions: React.FC<ActionsProps> = (props) => {
 
 const styles = css`
 	.actions-container {
-		@apply relative z-10 flex flex-col w-full;
+		@apply relative z-10 flex flex-col w-full mb-8;
 	}
+
 	.primary-name {
-		@apply text-white text-4xl font-bold leading-none;
+		@apply text-white text-3xl font-bold leading-none;
+	}
+
+	@screen md {
+		.actions-container {
+			@apply mb-0;
+		}
+		.primary-name {
+			@apply text-4xl; 
+		}
 	}
 `
 

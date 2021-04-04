@@ -31,10 +31,19 @@ const Details: React.FC<DetailsProps> = (props) => {
 
 const styles = css`
 	.name {
-		@apply text-white text-4xl font-bold leading-none;
+		@apply text-white text-3xl font-bold leading-none;
 	}
 	.searches {
-		@apply text-yellow-200 text-5xl font-bold leading-none;
+		@apply text-yellow-200 text-4xl font-bold leading-none;
+	}
+
+	@screen md {
+		.name {
+			@apply text-4xl; 
+		}
+		.searches {
+			@apply text-5xl;
+		}
 	}
 `
 
