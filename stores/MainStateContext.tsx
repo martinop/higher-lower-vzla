@@ -50,7 +50,7 @@ function MainStateProvider({ children }) {
 		versusNode.style.backgroundColor = "#25dc5f"
 
     await animateBgColor(versusNode)
-    versusControl.start(VersusAnimation.HIDDEN)
+    await versusControl.start(VersusAnimation.HIDDEN)
     await control.start("active", { duration: 1 });
 
     const nextCurrentIndex = state.currentIndex + 1;

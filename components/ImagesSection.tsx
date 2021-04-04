@@ -19,7 +19,7 @@ const ImagesSection: React.FC<ImagesSectionSizesProps> = ({ isDesktop }) => {
 				animate={control}
 				key={left.key}
 				variants={{ active: isDesktop ? { left: "-50%" } : { top: "-50%" } }}
-				className={cx("image-section top-0 md:left-0", components.className)}
+				className={cx("image-section left-section", components.className)}
 			>
 				<ImageBox {...left} isComparating={false} />
 			</motion.div>,
@@ -27,7 +27,7 @@ const ImagesSection: React.FC<ImagesSectionSizesProps> = ({ isDesktop }) => {
 				animate={control}
 				key={right.key}
 				variants={{ active: isDesktop ? { left: "0" } : { top: "0" } }}
-				className={cx("image-section top-1/2 md:left-1/2 md:top-0", components.className)}
+				className={cx("image-section right-section", components.className)}
 			>
 				<ImageBox {...right} isComparating comparator={left} />
 			</motion.div>,
@@ -36,7 +36,7 @@ const ImagesSection: React.FC<ImagesSectionSizesProps> = ({ isDesktop }) => {
 					animate={control}
 					key={temp.key}
 					variants={{ active: isDesktop ? { left: "50%" } : { top: "50%" } }}
-					className={cx("image-section top-full md:left-full md:top-0", components.className)}
+					className={cx("image-section temp-section", components.className)}
 				>
 					<ImageBox {...temp} isComparating comparator={right} />
 				</motion.div>
@@ -51,9 +51,32 @@ const components = css.resolve`
 		@apply absolute w-full h-1/2;
 	}
 
+	.left-section {
+		@apply top-0;
+	}
+
+	.right-section {
+		@apply top-1/2;
+	}
+
+	.temp-section {
+		@apply top-full;
+	}
+
 	@screen md {
 		.image-section {
 			@apply h-full w-1/2;
+		}
+
+		.left-section {
+			@apply left-0;
+		}
+		.right-section {
+			@apply left-1/2 top-0;
+		}
+
+		.temp-section {
+			@apply left-full top-0
 		}
 	}
 `

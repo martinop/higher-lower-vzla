@@ -1,9 +1,7 @@
 import * as React from 'react';
 import Head from 'next/head'
-import { AnimatePresence, motion } from "framer-motion"
-import ImageBox from '../components/ImageBox'
 import Points from '../components/Points'
-import { MainStateProvider, useMainState } from '../stores/MainStateContext';
+import { MainStateProvider } from '../stores/MainStateContext';
 import { css } from 'styled-jsx/css';
 import VersusText from '../components/VersusText';
 import ImagesSection from '../components/ImagesSection';
@@ -19,7 +17,7 @@ function Home() {
   return (
     <div>
       <Head>
-        <title>Más o menos Venezuela</title>
+        <title>Más o menos | Venezuela</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
