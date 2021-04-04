@@ -36,7 +36,7 @@ function Home() {
             animate={control}
             key={right.key}
             variants={{ active: { left: "0%" } }}
-            className="h-full w-1/2 absolute right-0"
+            className="h-full w-1/2 absolute left-1/2"
           >
             <ImageBox {...right} isComparating comparator={left} />
           </motion.div>,
@@ -44,8 +44,8 @@ function Home() {
             <motion.div
               animate={control}
               key={temp.key}
-              variants={{ active: { right: "0%" } }}
-              className="h-full w-1/2 absolute -right-1/2"
+              variants={{ active: { left: "50%" } }}
+              className="h-full w-1/2 absolute left-full"
             >
               <ImageBox {...temp} isComparating comparator={right} />
             </motion.div>

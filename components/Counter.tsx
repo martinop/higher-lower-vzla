@@ -23,8 +23,9 @@ const Counter: React.FC<CounterProps> = (props) => {
 				},
 				onComplete,
 			});
+		} else if(node) {
+			node.textContent = to.toFixed(0)
 		}
-
 
 		return () => controls && controls.stop();
 	}, [shouldAnimate, from, to]);
