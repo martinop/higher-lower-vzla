@@ -1,57 +1,63 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import * as React from 'react';
-import { AnimationControls, useAnimation } from 'framer-motion';
-import { Search } from '../types';
+import { animate, useAnimation } from 'framer-motion';
+import { MainContextState, MainState } from '../types';
 import data from '../data.json';
-
-type Props = { children: React.ReactNode };
+import { Selection, VersusAnimation } from '../enums';
 
 const initialState = {
   score: 0,
   highScore: 0,
   currentIndex: 2,
-  items: {
-    left: data[0],
-    right: data[1],
-    temp: data[2],
-  }
+  items: { left: data[0], right: data[1], temp: data[2] }
 };
-
 
 const initialContextState = {
   ...initialState,
-  control: {},
-  next: () => {},
+  control: undefined,
+  versusControl: undefined,
+  versusRef: undefined,
+  evalAnswer: ()  => {},
 };
 
-type ContextState = {
-  score: number;
-  highScore: number;
-  currentIndex: number;
-  control: AnimationControls | object;
-  next: () => void;
-  items: {
-    left: Search,
-    right: Search,
-    temp: Search,
-  }
-};
+const MainStateContext = React.createContext<MainContextState>(initialContextState);
 
-type State = Omit<ContextState, "control" | "next">;
-
-const MainStateContext = React.createContext<ContextState>(
-  initialContextState
-);
-
-function MainStateProvider({ children }: Props) {
-  const [state, setState] = React.useState<State>(initialState);
+function MainStateProvider({ children }) {
+  const [state, setState] = React.useState<MainState>(initialState);
+  const versusRef = React.useRef(undefined);
   const control = useAnimation()
+  const versusControl = useAnimation()
 
-  async function next() {
+  function animateBgColor(node: HTMLElement) {
+    return new Promise<void>((resolve) => {
+      animate(0, 100, {
+        duration: 1,
+        onUpdate: (value) => {
+          node.style.height = `${value}%`
+        },
+        onComplete: resolve,
+      });
+    })
+	}
+
+	async function animateLoser() {
+		const node = versusRef?.current;
+    node.style.backgroundColor = "red";
+    await animateBgColor(node)
+	}
+
+	async function animateWinner() {
+		const versusNode: HTMLDivElement = versusRef?.current;
+		versusNode.style.backgroundColor = "green";
+
+    await animateBgColor(versusNode)
+    versusControl.start(VersusAnimation.HIDDEN)
     await control.start("active", { duration: 1 });
+
     const nextCurrentIndex = state.currentIndex + 1;
     const nextTemp = data[nextCurrentIndex];
+  
     setState({
+      ...state,
       score: state.score + 1,
       highScore: state.highScore,
       currentIndex: nextCurrentIndex,
@@ -61,16 +67,39 @@ function MainStateProvider({ children }: Props) {
         temp: nextTemp
       }
     })
-    if(!nextTemp) {
+    if(nextTemp) {
+      versusControl.start(VersusAnimation.VISIBLE)
+      versusNode.style.height = "0"
+    } else {
       console.log("YOU ARE GODLIKE")
     }
+	}
+
+  function evalAnswer(selection: Selection) {
+    const current = state.items.right;
+    const comparator = state.items.left
+    const isHigherOK = selection === Selection.HIGHER && current.searches > comparator.searches
+		const isLowerOK = selection === Selection.LOWER && current.searches < comparator.searches
+    const isCorrect = isHigherOK || isLowerOK
+  
+    if(isCorrect) {
+      animateWinner()
+		} else {
+      animateLoser()
+      setState({
+        ...state,
+        highScore: state.score > state.highScore ? state.score : state.highScore
+      })
+			console.log("LOSER PAGE")
+		}
   }
   return (
-    <MainStateContext.Provider value={{ ...state, control, next }}>
+    <MainStateContext.Provider value={{ ...state, control, evalAnswer, versusRef, versusControl }}>
       {children}
     </MainStateContext.Provider>
   );
 }
+
 function useMainState() {
   const context = React.useContext(MainStateContext);
   return context;

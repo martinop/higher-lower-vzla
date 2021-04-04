@@ -1,8 +1,11 @@
 import * as React from 'react';
 import Head from 'next/head'
-import { AnimatePresence, motion, useAnimation } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import ImageBox from '../components/ImageBox'
+import Points from '../components/Points'
 import { MainStateProvider, useMainState } from '../stores/MainStateContext';
+import { css } from 'styled-jsx/css';
+import VersusText from '../components/VersusText';
 
 function HomeWrapper() {
   return (
@@ -22,7 +25,7 @@ function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="h-screen flex relative">
+      <main className="h-screen flex relative overflow-x-hidden">
         <AnimatePresence>
           <motion.div
             animate={control}
@@ -52,19 +55,22 @@ function Home() {
           )}
 
         </AnimatePresence>
-        <div className="vs">
-          <h1 className="text-3xl font-bold m-auto">VS</h1>
+        <div className="versus-container">
+          <VersusText />
         </div>
+        <Points />
       </main>
-      <style jsx>{`
-        .vs {
-          @apply absolute top-1/2 left-1/2 bg-white rounded-full h-24 w-24 flex;
-          transform: translate(-50%, -50%);
-        }
-      `}</style>
+      <style jsx>{styles}</style>
     </div>
   )
 }
+
+const styles = css`
+  .versus-container {
+    @apply absolute top-1/2 left-1/2;
+    transform: translate(-50%, -50%);
+  }
+`
 
 export default HomeWrapper;
 

@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { css } from 'styled-jsx/css';
+import { Selection } from '../../enums';
 import { Search } from '../../types';
 import Button from '../Button';
 
 type ActionsProps = {
 	name: string;
 	comparator: Search;
-	onSelect: (option: "higher" | "lower") => void;
+	onSelect: (option: Selection) => void;
 }
 
 const Actions: React.FC<ActionsProps> = (props) => {
@@ -17,7 +18,7 @@ const Actions: React.FC<ActionsProps> = (props) => {
 			<p className="images-text-assistant mt-2 mb-6">tiene</p>
 			<Button
 				className="self-center w-48"
-				onClick={() => onSelect("higher")}
+				onClick={() => onSelect(Selection.HIGHER)}
 			>
 				Más
 				<svg
@@ -32,7 +33,7 @@ const Actions: React.FC<ActionsProps> = (props) => {
 			</Button>
 			<Button
 				className="mt-4 self-center w-48"
-				onClick={() => onSelect("lower")}
+				onClick={() => onSelect(Selection.LOWER)}
 			>
 				Menos
 				<svg

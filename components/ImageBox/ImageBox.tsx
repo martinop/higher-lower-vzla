@@ -13,24 +13,16 @@ type ImageBoxProps = Pick<Search, 'name' | 'searches' | 'imagePath'> & {
 	className?: string;
 }
 
-type Selection =  "higher" | "lower";
-
 const ImageBox: React.FC<ImageBoxProps> = (props) => {
 	const { name, searches, imagePath, isComparating, comparator, className } = props;
 
-	const { next } = useMainState();
+	const { evalAnswer } = useMainState();
 	const [selected, setSelected] = React.useState(null);
 
 	const showActions = isComparating && !selected;
 
 	function onCompleteCounter() {
-		const isHigherOK = selected === "higher" && searches > comparator.searches;
-		const isLowerOK = selected === "lower" && searches < comparator.searches;
-		if(isHigherOK || isLowerOK) {
-			next();
-		} else {
-			console.log("LOSER MODAL")
-		}
+		evalAnswer(selected)
 	}
 
 	return (
