@@ -40,14 +40,17 @@ function Home() {
           >
             <ImageBox {...right} isComparating comparator={left} />
           </motion.div>,
-          <motion.div
-            animate={control}
-            key={temp.key}
-            variants={{ active: { right: "0%" } }}
-            className="h-full w-1/2 absolute -right-1/2"
-          >
-            <ImageBox {...temp} isComparating comparator={right} />
-          </motion.div>
+          {temp && (
+            <motion.div
+              animate={control}
+              key={temp.key}
+              variants={{ active: { right: "0%" } }}
+              className="h-full w-1/2 absolute -right-1/2"
+            >
+              <ImageBox {...temp} isComparating comparator={right} />
+            </motion.div>
+          )}
+
         </AnimatePresence>
         <div className="vs">
           <h1 className="text-3xl font-bold m-auto">VS</h1>

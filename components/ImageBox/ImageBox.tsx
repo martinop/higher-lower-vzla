@@ -19,19 +19,13 @@ const ImageBox: React.FC<ImageBoxProps> = (props) => {
 	const { name, searches, imagePath, isComparating, comparator, className } = props;
 
 	const { next } = useMainState();
-	const [revealed, setRevealed] = React.useState(false);
-	const selected = React.useRef<Selection>(null);
+	const [selected, setSelected] = React.useState(null);
 
-	const showActions = isComparating && !revealed;
-
-	function onSelect(selection: Selection) {
-		setRevealed(true)
-		selected.current = selection;
-	}
+	const showActions = isComparating && !selected;
 
 	function onCompleteCounter() {
-		const isHigherOK = selected.current === "higher" && searches > comparator.searches;
-		const isLowerOK = selected.current === "lower" && searches < comparator.searches;
+		const isHigherOK = selected === "higher" && searches > comparator.searches;
+		const isLowerOK = selected === "lower" && searches < comparator.searches;
 		if(isHigherOK || isLowerOK) {
 			next();
 		} else {
@@ -50,7 +44,7 @@ const ImageBox: React.FC<ImageBoxProps> = (props) => {
 			{showActions ? (
 				<Actions
 					name={name}
-					onSelect={onSelect}
+					onSelect={setSelected}
 					comparator={comparator}
 				/>
 			) : (

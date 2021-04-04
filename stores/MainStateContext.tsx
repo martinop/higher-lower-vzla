@@ -6,12 +6,10 @@ import data from '../data.json';
 
 type Props = { children: React.ReactNode };
 
-const initialContextState = {
+const initialState = {
   score: 0,
   highScore: 0,
-  control: {},
-  nextIndex: 3,
-  next: () => {},
+  currentIndex: 2,
   items: {
     left: data[0],
     right: data[1],
@@ -19,21 +17,17 @@ const initialContextState = {
   }
 };
 
-const initialState = {
-  score: 0,
-  highScore: 0,
-  nextIndex: 3,
-  items: {
-    left: data[0],
-    right: data[1],
-    temp: data[2],
-  }
+
+const initialContextState = {
+  ...initialState,
+  control: {},
+  next: () => {},
 };
 
 type ContextState = {
   score: number;
   highScore: number;
-  nextIndex: number;
+  currentIndex: number;
   control: AnimationControls | object;
   next: () => void;
   items: {
@@ -55,16 +49,21 @@ function MainStateProvider({ children }: Props) {
 
   async function next() {
     await control.start("active", { duration: 1 });
+    const nextCurrentIndex = state.currentIndex + 1;
+    const nextTemp = data[nextCurrentIndex];
     setState({
       score: state.score + 1,
       highScore: state.highScore,
-      nextIndex: state.nextIndex + 1,
+      currentIndex: nextCurrentIndex,
       items: {
         left: state.items.right,
         right: state.items.temp,
-        temp: data[state.nextIndex]
+        temp: nextTemp
       }
     })
+    if(!nextTemp) {
+      console.log("YOU ARE GODLIKE")
+    }
   }
   return (
     <MainStateContext.Provider value={{ ...state, control, next }}>

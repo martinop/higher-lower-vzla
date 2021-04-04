@@ -18,9 +18,15 @@
 		"key": 3
 	},
 	{ 
-		"name": "Miss Venezuel",
+		"name": "Miss Venezuela",
 		"searches": 2500,
 		"imagePath": "/miss-venezuela.jpeg",
 		"key": 4
+	},
+	{ 
+		"name": "Gasolina",
+		"searches": 5000,
+		"imagePath": "/gasolina.jpeg",
+		"key": 5
 	}
 ]
