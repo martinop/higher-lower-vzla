@@ -32,7 +32,7 @@ const Actions: React.FC<ActionsProps> = (props) => {
 			</Button>
 			<Button
 				className="mt-4 self-center w-48"
-				onClick={() => onSelect("higher")}
+				onClick={() => onSelect("lower")}
 			>
 				Menos
 				<svg

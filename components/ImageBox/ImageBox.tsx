@@ -5,6 +5,7 @@ import Actions from './Actions';
 import { css } from 'styled-jsx/css';
 import cx from 'classnames';
 import { Search } from '../../types';
+import { useMainState } from '../../stores/MainStateContext';
 
 type ImageBoxProps = Pick<Search, 'name' | 'searches' | 'imagePath'> & {
 	isComparating: boolean;
@@ -16,8 +17,11 @@ type Selection =  "higher" | "lower";
 
 const ImageBox: React.FC<ImageBoxProps> = (props) => {
 	const { name, searches, imagePath, isComparating, comparator, className } = props;
+
+	const { next } = useMainState();
 	const [revealed, setRevealed] = React.useState(false);
 	const selected = React.useRef<Selection>(null);
+
 	const showActions = isComparating && !revealed;
 
 	function onSelect(selection: Selection) {
@@ -29,7 +33,7 @@ const ImageBox: React.FC<ImageBoxProps> = (props) => {
 		const isHigherOK = selected.current === "higher" && searches > comparator.searches;
 		const isLowerOK = selected.current === "lower" && searches < comparator.searches;
 		if(isHigherOK || isLowerOK) {
-			console.log("NEXT ROUND")
+			next();
 		} else {
 			console.log("LOSER MODAL")
 		}

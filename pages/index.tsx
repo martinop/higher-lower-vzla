@@ -2,17 +2,18 @@ import * as React from 'react';
 import Head from 'next/head'
 import { AnimatePresence, motion, useAnimation } from "framer-motion"
 import ImageBox from '../components/ImageBox'
-import data from '../data.json';
+import { MainStateProvider, useMainState } from '../stores/MainStateContext';
 
-export default function Home() {
-  const [items, setItems] = React.useState({ left: data[0], right: data[1], temp: data[2] })
+function HomeWrapper() {
+  return (
+    <MainStateProvider>
+      <Home />
+    </MainStateProvider>
+  )
+}
+function Home() {
+  const { items, control } = useMainState()
   const { left, right, temp } = items;
-  const control = useAnimation()
-
-  async function animate() {
-    await control.start("active", { duration: 1 })
-    setItems({ left: right, right: temp, temp: data[3] })
-  }
 
   return (
     <div>
@@ -22,7 +23,6 @@ export default function Home() {
       </Head>
 
       <main className="h-screen flex relative">
-        <button className='absolute top-0 left-0 z-10' onClick={animate}>Animate</button>
         <AnimatePresence>
           <motion.div
             animate={control}
@@ -62,3 +62,7 @@ export default function Home() {
     </div>
   )
 }
+
+export default HomeWrapper;
+
+
