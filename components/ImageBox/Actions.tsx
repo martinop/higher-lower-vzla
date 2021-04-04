@@ -4,12 +4,12 @@ import Button from '../Button';
 
 type ActionsProps = {
 	name: string;
-	comparasinName: string;
+	comparisonName: string;
 	onSelect: (option: "higher" | "lower") => void;
 }
 
 const Actions: React.FC<ActionsProps> = (props) => {
-	const { name, comparasinName, onSelect } = props;
+	const { name, comparisonName, onSelect } = props;
 	return (
 		<div className="actions-container">
 			<h3 className="primary-name">"{name}"</h3>
@@ -38,7 +38,7 @@ const Actions: React.FC<ActionsProps> = (props) => {
 					<path d="M12 21l-12-18h24z" fill="currentColor" />
 				</svg>
 			</Button>
-			<p className="images-text-assistant mt-3">búsquedas que <span className="font-bold">{comparasinName}</span></p>
+			<p className="images-text-assistant mt-3">búsquedas que <span className="font-bold">{comparisonName}</span></p>
 
 			<style jsx>{styles}</style>
 		</div>

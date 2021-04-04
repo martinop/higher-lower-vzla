@@ -2,11 +2,25 @@
 	{ 
 		"name": "Arepa",
 		"searches": 10000,
-		"imagePath": "/arepa.jpeg"
+		"imagePath": "/arepa.jpeg",
+		"key": 1
 	},
 	{ 
 		"name": "Dolar",
 		"searches": 4000,
-		"imagePath": "/dolar.jpeg"
+		"imagePath": "/dolar.jpeg",
+		"key": 2
+	},
+	{ 
+		"name": "Lasso",
+		"searches": 2000,
+		"imagePath": "/lasso.jpeg",
+		"key": 3
+	},
+	{ 
+		"name": "Miss Venezuel",
+		"searches": 2500,
+		"imagePath": "/miss-venezuela.jpeg",
+		"key": 4
 	}
 ]
