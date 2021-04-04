@@ -35,7 +35,7 @@ function VersusText() {
 
 const components = css.resolve`
 	.vs {
-		@apply relative bg-white rounded-full h-16 w-16 flex;
+		@apply relative bg-white overflow-hidden rounded-full h-16 w-16 flex;
 	}
 `
 

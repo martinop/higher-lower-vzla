@@ -6,6 +6,7 @@ import Points from '../components/Points'
 import { MainStateProvider, useMainState } from '../stores/MainStateContext';
 import { css } from 'styled-jsx/css';
 import VersusText from '../components/VersusText';
+import ImagesSection from '../components/ImagesSection';
 
 function HomeWrapper() {
   return (
@@ -15,46 +16,14 @@ function HomeWrapper() {
   )
 }
 function Home() {
-  const { items, control } = useMainState()
-  const { left, right, temp } = items;
-
   return (
     <div>
       <Head>
         <title>Más o menos Venezuela</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main className="h-screen flex relative overflow-x-hidden">
-        <AnimatePresence>
-          <motion.div
-            animate={control}
-            key={left.key}
-            variants={{ active: { left: "-50%" } }}
-            className="h-full w-1/2 absolute left-0"
-          >
-            <ImageBox {...left} isComparating={false} />
-          </motion.div>,
-          <motion.div
-            animate={control}
-            key={right.key}
-            variants={{ active: { left: "0%" } }}
-            className="h-full w-1/2 absolute left-1/2"
-          >
-            <ImageBox {...right} isComparating comparator={left} />
-          </motion.div>,
-          {temp && (
-            <motion.div
-              animate={control}
-              key={temp.key}
-              variants={{ active: { left: "50%" } }}
-              className="h-full w-1/2 absolute left-full"
-            >
-              <ImageBox {...temp} isComparating comparator={right} />
-            </motion.div>
-          )}
-
-        </AnimatePresence>
+      <main>
+        <ImagesSection />
         <div className="versus-container">
           <VersusText />
         </div>
@@ -66,6 +35,9 @@ function Home() {
 }
 
 const styles = css`
+  main {
+    @apply h-screen flex relative overflow-x-hidden;
+  }
   .versus-container {
     @apply absolute top-1/2 left-1/2;
     transform: translate(-50%, -50%);

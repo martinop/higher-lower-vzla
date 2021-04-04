@@ -40,14 +40,14 @@ function MainStateProvider({ children }) {
 	}
 
 	async function animateLoser() {
-		const node = versusRef?.current;
-    node.style.backgroundColor = "red";
-    await animateBgColor(node)
+		const versusNode: HTMLDivElement = versusRef?.current;
+		versusNode.style.backgroundColor = "#DC2625"
+    await animateBgColor(versusNode)
 	}
 
 	async function animateWinner() {
 		const versusNode: HTMLDivElement = versusRef?.current;
-		versusNode.style.backgroundColor = "green";
+		versusNode.style.backgroundColor = "#25dc5f"
 
     await animateBgColor(versusNode)
     versusControl.start(VersusAnimation.HIDDEN)
@@ -56,10 +56,11 @@ function MainStateProvider({ children }) {
     const nextCurrentIndex = state.currentIndex + 1;
     const nextTemp = data[nextCurrentIndex];
   
+    const score = state.score + 1;
     setState({
       ...state,
-      score: state.score + 1,
-      highScore: state.highScore,
+      score,
+      highScore: score > state.highScore ? score : state.highScore,
       currentIndex: nextCurrentIndex,
       items: {
         left: state.items.right,
