@@ -1,14 +1,17 @@
 import * as React from 'react';
+import shuffle from 'lodash/shuffle';
 import { animate, useAnimation } from 'framer-motion';
-import { MainContextState, MainState } from '../types';
+import { MainContextState, MainState, Search } from '../types';
 import data from '../data.json';
 import { Selection, VersusAnimation } from '../enums';
+
+const _data = shuffle(data).map((item: Search, key: number) => ({ ...item, key }));
 
 const initialState = {
   score: 0,
   highScore: 0,
   currentIndex: 2,
-  items: { left: data[0], right: data[1], temp: data[2] }
+  items: { left: _data[0], right: _data[1], temp: _data[2] }
 };
 
 const initialContextState = {
@@ -54,7 +57,7 @@ function MainStateProvider({ children }) {
     await control.start("active", { duration: 1 });
 
     const nextCurrentIndex = state.currentIndex + 1;
-    const nextTemp = data[nextCurrentIndex];
+    const nextTemp = _data[nextCurrentIndex];
   
     const score = state.score + 1;
     setState({

@@ -1,11 +1,13 @@
 import * as React from 'react';
+import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import Points from '../components/Points'
 import { css } from 'styled-jsx/css';
 import VersusText from '../components/VersusText';
-import ImagesSection from '../components/ImagesSection';
 
-function Home({ isDesktopSSR }) {
+const ImagesSection = dynamic(() => import('../components/ImagesSection'), { ssr: false })
+
+function Home() {
   return (
     <div>
       <Head>
@@ -13,7 +15,7 @@ function Home({ isDesktopSSR }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <ImagesSection isDesktopSSR={isDesktopSSR} />
+        <ImagesSection />
         <div className="versus-container">
           <VersusText />
         </div>
@@ -33,15 +35,6 @@ const styles = css`
     transform: translate(-50%, -50%);
   }
 `
-
-export async function getServerSideProps(context) {
-  const UA = context.req.headers['user-agent'];
-  const isDesktopSSR = !Boolean(UA.match(
-    /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i
-  ))
-
-  return { props: { isDesktopSSR } }
-}
 
 export default Home;
 

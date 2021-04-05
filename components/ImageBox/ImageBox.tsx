@@ -32,6 +32,7 @@ const ImageBox: React.FC<ImageBoxProps> = (props) => {
 				src={imagePath}
 				layout="fill"
 				objectFit="cover"
+				quality={100}
 			/>
 			{showActions ? (
 				<Actions

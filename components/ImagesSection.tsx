@@ -81,9 +81,9 @@ const components = css.resolve`
 	}
 `
 
-const mapSizesToProps = (sizes: Sizes, { isDesktopSSR }) => {
+const mapSizesToProps = (sizes: Sizes) => {
 	const { width } = sizes;
-	return { isDesktop: width >= 768 || isDesktopSSR }
+	return { isDesktop: width >= 768 }
 }
 
 export default withSizes<ImagesSectionSizesProps>(mapSizesToProps)(ImagesSection);

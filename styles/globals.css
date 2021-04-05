@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+	@apply bg-gray-900;
+}
 
 .images-text-assistant {
 	@apply text-white text-base leading-none font-light;

@@ -1,32 +1,187 @@
 [
-	{ 
-		"name": "Arepa",
-		"searches": 10000,
-		"imagePath": "/arepa.jpeg",
-		"key": 1
+	{
+		 "name":"Diosa Canales",
+		 "searches":8500,
+		 "imagePath": "/diosa-canales.jpeg"
 	},
-	{ 
-		"name": "Dolar",
-		"searches": 4000,
-		"imagePath": "/dolar.jpeg",
-		"key": 2
+	{
+		 "name":"Arepa",
+		 "searches":12000,
+		 "imagePath": "/arepa.jpeg"
 	},
-	{ 
-		"name": "Lasso",
-		"searches": 2000,
-		"imagePath": "/lasso.jpeg",
-		"key": 3
+	{
+		 "name":"CANTV",
+		 "searches":778000,
+		 "imagePath": "/cantv.jpeg"
 	},
-	{ 
-		"name": "Miss Venezuela",
-		"searches": 2500,
-		"imagePath": "/miss-venezuela.jpeg",
-		"key": 4
+	{
+		 "name":"Leones del Caracas",
+		 "searches":17800,
+		 "imagePath": "/leones.jpeg"
 	},
-	{ 
-		"name": "Gasolina",
-		"searches": 5000,
-		"imagePath": "/gasolina.jpeg",
-		"key": 5
+	{
+		 "name":"Magallanes",
+		 "searches":9000,
+		 "imagePath": "/magallanes.webp"
+	},
+	{
+		 "name":"Digitel",
+		 "searches":190000,
+		 "imagePath": "/digitel.jpeg"
+	},
+	{
+		 "name":"Movistar",
+		 "searches":433000,
+		 "imagePath": "/movistar.jpeg"
+	},
+	{
+		 "name":"Gasolina",
+		 "searches":29000,
+		 "imagePath": "/gasolina.jpeg"
+	},
+	{
+		 "name":"Dolar Today",
+		 "searches":1300000,
+		 "imagePath": "/dolar-today.jpeg"
+	},
+	{
+		 "name":"Dolar",
+		 "searches":434000,
+		 "imagePath": "/dolar.jpeg"
+	},
+	{
+		 "name":"Dolar Monitor",
+		 "searches":2200000,
+		 "imagePath": "/monitor-dolar.jpeg"
+	},
+	{
+		 "name":"Racionamiento Electrico",
+		 "searches":3700,
+		 "imagePath": "/racionamiento-electrico.jpeg"
+	},
+	{
+		 "name":"Apagon",
+		 "searches":2300,
+		 "imagePath": "/racionamiento-electrico.jpeg"
+	},
+	{
+		 "name":"Zurda Konducta",
+		 "searches":4500,
+		 "imagePath": "/zurda-konducta.jpeg"
+	},
+	{
+		 "name":"lasirena69",
+		 "searches":3500,
+		 "imagePath": "/lasirena69.jpeg"
+	},
+	{
+		 "name":"Escuela de Nada",
+		 "searches":4200,
+		 "imagePath": "/edn.jpeg"
+	},
+	{
+		 "name":"Miss Venezuela",
+		 "searches":33000,
+		 "imagePath": "/miss-venezuela.jpeg"
+	},
+	{
+		 "name":"Empanadas",
+		 "searches":7900,
+		 "imagePath": "/empanadas.jpeg"
+	},
+	{
+		 "name":"VPN",
+		 "searches":41000,
+		 "imagePath": "/vpn.png"
+	},
+	{
+		 "name":"Petare",
+		 "searches":11000,
+		 "imagePath": "/petare.jpeg"
+	},
+	{
+		 "name":"Valencia",
+		 "searches":8500,
+		 "imagePath": "/valencia.jpeg"
+	},
+	{
+		 "name":"Guarico",
+		 "searches":6500,
+		 "imagePath": "/not-found.jpeg"
+	},
+	{
+		 "name":"Barinas",
+		 "searches":9600,
+		 "imagePath": "/barinas.jpeg"
+	},
+	{
+		 "name":"Patacon",
+		 "searches":3200,
+		 "imagePath": "/patacon.jpeg"
+	},
+	{
+		 "name":"Sebin",
+		 "searches":13000,
+		 "imagePath": "/sebin.jpeg"
+	},
+	{
+		 "name":"Faes",
+		 "searches":35000,
+		 "imagePath": "/faes.jpg"
+	},
+	{
+		 "name":"Rosita",
+		 "searches":3700,
+		 "imagePath": "/rosita.jpeg"
+	},
+	{
+		 "name":"Bitcoin",
+		 "searches":106000,
+		 "imagePath": "/btc.jpeg"
+	},
+	{
+		 "name":"Internet",
+		 "searches":39000,
+		 "imagePath": "/internet.jpeg"
+	},
+	{
+		 "name":"Maduro",
+		 "searches":137000,
+		 "imagePath": "/maduro.jpeg"
+	},
+	{
+		 "name":"Diosdado",
+		 "searches":76000,
+		 "imagePath": "/diosdado.jpeg"
+	},
+	{
+		 "name":"Chavez",
+		 "searches":15000,
+		 "imagePath": "/chavez.jpeg"
+	},
+	{
+		 "name":"Chataing",
+		 "searches":2800,
+		 "imagePath": "/chataing.jpeg"
+	},
+	{
+		 "name":"La Vinotinto",
+		 "searches":12000,
+		 "imagePath": "/la-vinotinto.jpeg"
+	},
+	{
+		 "name":"Carne en vara",
+		 "searches":1600,
+		 "imagePath": "/carne-vara.jpeg"
+	},
+	{
+		 "name":"Cardenales De Lara",
+		 "searches":25000,
+		 "imagePath": "/cardenales.jpeg"
+	},
+	{
+		 "name":"Guri",
+		 "searches":3600,
+		 "imagePath": "/guri.jpeg"
 	}
 ]
