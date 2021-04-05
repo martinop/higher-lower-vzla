@@ -1,19 +1,11 @@
 import * as React from 'react';
 import Head from 'next/head'
 import Points from '../components/Points'
-import { MainStateProvider } from '../stores/MainStateContext';
 import { css } from 'styled-jsx/css';
 import VersusText from '../components/VersusText';
 import ImagesSection from '../components/ImagesSection';
 
-function HomeWrapper() {
-  return (
-    <MainStateProvider>
-      <Home />
-    </MainStateProvider>
-  )
-}
-function Home() {
+function Home({ isDesktopSSR }) {
   return (
     <div>
       <Head>
@@ -21,7 +13,7 @@ function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <ImagesSection />
+        <ImagesSection isDesktopSSR={isDesktopSSR} />
         <div className="versus-container">
           <VersusText />
         </div>
@@ -42,6 +34,15 @@ const styles = css`
   }
 `
 
-export default HomeWrapper;
+export async function getServerSideProps(context) {
+  const UA = context.req.headers['user-agent'];
+  const isDesktopSSR = !Boolean(UA.match(
+    /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i
+  ))
+
+  return { props: { isDesktopSSR } }
+}
+
+export default Home;
 
 

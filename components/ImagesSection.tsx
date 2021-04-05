@@ -6,7 +6,7 @@ import { useMainState } from "../stores/MainStateContext";
 import ImageBox from './ImageBox';
 import { css } from 'styled-jsx/css';
 
-export type ImagesSectionSizesProps = {
+type ImagesSectionSizesProps = {
 	isDesktop: boolean;
 };
 
@@ -81,9 +81,9 @@ const components = css.resolve`
 	}
 `
 
-const mapSizesToProps = (sizes: Sizes) => {
+const mapSizesToProps = (sizes: Sizes, { isDesktopSSR }) => {
 	const { width } = sizes;
-	return { isDesktop: width >= 768 }
+	return { isDesktop: width >= 768 || isDesktopSSR }
 }
 
 export default withSizes<ImagesSectionSizesProps>(mapSizesToProps)(ImagesSection);
