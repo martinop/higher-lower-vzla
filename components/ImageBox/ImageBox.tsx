@@ -59,7 +59,7 @@ const styles = css`
 		@apply h-full relative flex justify-center items-center text-center;
 	}
 	.overlay {
-		@apply inset-0 absolute bg-black bg-opacity-60 w-full h-full;
+		@apply inset-0 absolute bg-black bg-opacity-75 w-full h-full;
 	}
 `
 

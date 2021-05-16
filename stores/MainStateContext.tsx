@@ -1,18 +1,25 @@
 import * as React from 'react';
 import shuffle from 'lodash/shuffle';
+import Router from 'next/router';
 import { animate, useAnimation } from 'framer-motion';
 import { MainContextState, MainState, Search } from '../types';
 import data from '../data.json';
 import { Selection, VersusAnimation } from '../enums';
 
-const _data = shuffle(data).map((item: Search, key: number) => ({ ...item, key }));
+const ANIMATION_DELAY_TIME = 1500;
 
-const initialState = {
-  score: 0,
-  highScore: 0,
-  currentIndex: 2,
-  items: { left: _data[0], right: _data[1], temp: _data[2] }
-};
+function getInitialState() {
+  const _data = shuffle(data).map((item: Search, key: number) => ({ ...item, key }));
+  return {
+    score: 0,
+    highScore: 0,
+    currentIndex: 2,
+    data: _data,
+    items: { left: _data[0], right: _data[1], temp: _data[2] }
+  };
+}
+
+const initialState = getInitialState();
 
 const initialContextState = {
   ...initialState,
@@ -20,6 +27,7 @@ const initialContextState = {
   versusControl: undefined,
   versusRef: undefined,
   evalAnswer: ()  => {},
+  reset: () => {},
 };
 
 const MainStateContext = React.createContext<MainContextState>(initialContextState);
@@ -57,7 +65,7 @@ function MainStateProvider({ children }) {
     await control.start("active", { duration: 1 });
 
     const nextCurrentIndex = state.currentIndex + 1;
-    const nextTemp = _data[nextCurrentIndex];
+    const nextTemp = state.data[nextCurrentIndex];
   
     const score = state.score + 1;
     setState({
@@ -94,11 +102,16 @@ function MainStateProvider({ children }) {
         ...state,
         highScore: state.score > state.highScore ? state.score : state.highScore
       })
-			console.log("LOSER PAGE")
-		}
+      setTimeout(() => Router.push('/loser'), ANIMATION_DELAY_TIME)
+    }
   }
+
+  function reset() {
+    setState(getInitialState())
+  }
+
   return (
-    <MainStateContext.Provider value={{ ...state, control, evalAnswer, versusRef, versusControl }}>
+    <MainStateContext.Provider value={{ ...state, control, reset, evalAnswer, versusRef, versusControl }}>
       {children}
     </MainStateContext.Provider>
   );

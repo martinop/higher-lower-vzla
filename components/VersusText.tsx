@@ -35,7 +35,7 @@ function VersusText() {
 
 const components = css.resolve`
 	.vs {
-		@apply relative bg-white overflow-hidden rounded-full h-10 w-10 flex;
+		@apply relative bg-white overflow-hidden rounded-full h-12 w-12 flex;
 	}
 
 	@screen md {
@@ -47,7 +47,7 @@ const components = css.resolve`
 
 const styles = css`
 	.vs-text {
-		@apply text-lg font-bold m-auto;
+		@apply text-xl font-bold m-auto;
 	}
 
 	@screen md {

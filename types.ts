@@ -17,6 +17,8 @@ export type MainContextState = {
   versusControl: AnimationControls | undefined;
   versusRef: React.LegacyRef<HTMLDivElement>;
   evalAnswer: (selection: Selection) => void;
+  reset: () => void;
+  data: Search[];
   items: {
     left: Search,
     right: Search,
@@ -24,4 +26,4 @@ export type MainContextState = {
   }
 };
 
-export type MainState = Omit<MainContextState, "control" | "evalAnswer" | "next" | "versusRef" | "versusControl">;
+export type MainState = Omit<MainContextState, "control" | "evalAnswer" | "next" | "versusRef" | "versusControl" | "reset">;
